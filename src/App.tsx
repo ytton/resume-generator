@@ -1,7 +1,7 @@
-import { Component, useState } from 'react'
+import { useState } from 'react'
 import Home from '@/pages/home'
 import Resume from '@/pages/resume'
-import { Breadcrumb, Layout, Menu, theme } from 'antd'
+import { Layout, Menu, theme } from 'antd'
 import {} from 'antd/es/layout/layout'
 const { Header, Content, Footer } = Layout
 import './App.less'
@@ -12,7 +12,7 @@ export default function App() {
   //   resume: <Resume />
   // }
   const {
-    token: { colorBgContainer, borderRadiusLG }
+    token: { colorBgContainer }
   } = theme.useToken()
   const pages = [
     {

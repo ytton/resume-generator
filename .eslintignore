@@ -1,6 +1,4 @@
-
 .prettierrc
 !commitlint.config.js
 .babel.config.js
 !.umirc.ts
- 
