@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
+import { Component, useState } from 'react'
+import Home from '@/pages/home'
+import Resume from '@/pages/resume'
+import { Breadcrumb, Layout, Menu, theme } from 'antd'
+import {} from 'antd/es/layout/layout'
+const { Header, Content, Footer } = Layout
+import './App.less'
+export default function App() {
+  const [currentPage, setCurrentPage] = useState('home')
+  // const pageMap = {
+  //   home:,
+  //   resume: <Resume />
+  // }
+  const {
+    token: { colorBgContainer, borderRadiusLG }
+  } = theme.useToken()
+  const pages = [
+    {
+      key: 'home',
+      label: '首页',
+      Component: <Home />
+    },
+    {
+      key: 'resume',
+      label: '设置简历',
+      Component: <Resume />
+    }
+  ]
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    // <div>
+    //   <nav>
+    //     <div className="item" onClick={() => setCurrentPage('home')}>
+    //       首页
+    //     </div>
+    //     <div className="item" onClick={() => setCurrentPage('resume')}>
+    //       制作简历
+    //     </div>
+    //   </nav>
+    //   <div className="content">{pageMap[currentPage]}</div>
+    // </div>
+    <Layout className="main">
+      <Header style={{ display: 'flex', alignItems: 'center' }}>
+        <div className="demo-logo" />
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          defaultSelectedKeys={['home']}
+          items={pages}
+          onClick={({ key }) => setCurrentPage(key)}
+          style={{ flex: 1, minWidth: 0 }}
+        />
+      </Header>
+      <Content style={{ padding: '20px' }}>
+        <div
+          style={{
+            background: colorBgContainer,
+            minHeight: 280,
+            height: '100%',
+            padding: 24
+          }}
+        >
+          {pages.find((x) => x.key === currentPage)?.Component}
+        </div>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>
+        Ant Design ©{new Date().getFullYear()} Created by Ant UED
+      </Footer>
+    </Layout>
   )
 }
-
-export default App
