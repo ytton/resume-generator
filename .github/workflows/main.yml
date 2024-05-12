@@ -19,6 +19,8 @@ jobs:
         npm run-script build
         
     - name: Deploy
-      run: |
-        npm run-script deploy
-     
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.DEPLOY_KEY }}
+          publish_dir: ./dist
+
