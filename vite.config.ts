@@ -17,7 +17,7 @@ export default defineConfig({
   plugins: [
     viteStaticCopy({
       targets: [
-        { src: 'src/assets/**/*', dest: '/assets' } // 将 src/assets 目录下的所有内容复制到 dist/assets
+        { src: 'src/assets/*', dest: 'assets' } // 将 src/assets 目录下的所有内容复制到 dist/assets
       ]
     }),
     react({
