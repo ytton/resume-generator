@@ -1,0 +1,15 @@
+.avatar {
+  flex-shrink: 0;
+  :global(.ant-upload.ant-upload-select.ant-upload.ant-upload.ant-upload.ant-upload) {
+    min-width: 90px;
+    height: 100%;
+    aspect-ratio: calc(3 / 4);
+    overflow: hidden;
+    border-radius: 1px;
+  }
+  &.hasImg {
+    :global(.ant-upload.ant-upload-select.ant-upload.ant-upload.ant-upload.ant-upload) {
+      border-color: transparent;
+    }
+  }
+}

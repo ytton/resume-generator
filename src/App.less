@@ -1,6 +1,46 @@
 body {
   height: 100vh;
+  background-color: #39394d;
+}
+* {
+  box-sizing: border-box;
 }
 .main {
   height: 100vh;
+}
+.resume {
+  /* total width */
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+  }
+
+  /* background of the scrollbar except button or resizer */
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-track:hover {
+    background-color: transparent;
+  }
+
+  /* scrollbar itself */
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-right: 4px solid #a0a0a5;
+    border-radius: 1px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    border-right: 10px solid #a0a0a5;
+  }
+
+  /* set button(top and bottom of the scrollbar) */
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  /* 滚动条在 Firefox 下的样式 */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #a0a0a5 #f1f1f1;
+  }
 }
