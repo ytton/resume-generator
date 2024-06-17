@@ -1,0 +1,35 @@
+.rich-text {
+  .ql-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    .ql-editor {
+      flex: 1;
+      font-size: 1rem;
+      h1 {
+        font-size: 1.4em;
+      }
+      h2 {
+        font-size: 1.2em;
+      }
+      ol,
+      ul {
+        padding-left: 0;
+        overflow-y: visible;
+        display: inline-block;
+        li {
+          padding-left: 1.2em;
+        }
+      }
+    }
+  }
+  &.read-only {
+    .ql-container {
+      border: none;
+      padding: 0;
+      .ql-editor {
+        padding: 0;
+      }
+    }
+  }
+}
