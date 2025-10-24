@@ -1,0 +1,203 @@
+.template-default {
+  .module {
+    &__title {
+      line-height: 1.5;
+
+      span {
+        background-color: var(--color-primary, #6767aa);
+        padding: 3px;
+        padding-left: 5px;
+        min-width: 6em;
+        display: inline-block;
+        color: #fff;
+      }
+
+      border-bottom: 2px solid var(--color-primary, #6767aa);
+    }
+
+    &__content {
+      padding: 8px 3px;
+    }
+  }
+
+
+
+  .hide-label.hide-label {
+    .base-info {
+      min-height: 180px;
+
+      .desc-item {
+        width: auto;
+
+        &::after {
+          content: '|';
+          display: inline-block;
+          padding: 0 0.5em;
+          color: #cccccc;
+        }
+      }
+
+      .label {
+        display: none;
+      }
+
+      &__name {
+        order: 1;
+        font-size: 28px;
+
+        &.desc-item {
+          width: 100%;
+
+          &::after {
+            content: '';
+          }
+        }
+      }
+
+      &__gender {
+        order: 2;
+      }
+
+      &__age {
+        order: 3;
+      }
+
+      &__work-years {
+        order: 4;
+      }
+
+      &__tel {
+        order: 5;
+      }
+
+      &__email {
+        order: 6;
+      }
+
+      &__salary {
+        &.desc-item::after {
+          content: '';
+        }
+      }
+
+      &__cur-status {
+        width: 100% !important;
+        order: 99999;
+        margin-top: 0.5em;
+
+        &.desc-item::after {
+          content: '';
+        }
+      }
+    }
+  }
+
+  .base-info {
+    position: relative;
+
+    .desc-item {
+      padding: 5px 0;
+      width: 50%;
+      order: 999;
+    }
+
+    .module__content {
+      display: flex;
+      flex-wrap: wrap;
+      padding-right: 100px;
+    }
+
+    .label {
+      display: inline-block;
+      width: 7em;
+
+      &::after {
+        content: ':';
+        margin-right: 10px;
+      }
+    }
+
+    &__name {
+      order: 1;
+    }
+
+    &__avatar {
+      position: absolute;
+      right: 0px;
+      order: 3;
+    }
+
+    &__tel {
+      order: 3;
+    }
+
+    &__email {
+      order: 4;
+    }
+
+    &__gender {
+      order: 5;
+    }
+
+    &__work-years {
+      order: 6;
+    }
+
+    &__intention {
+      order: 2;
+    }
+
+    & &__edu-level {
+      order: 7;
+    }
+
+    & &__city {
+      order: 8;
+    }
+  }
+
+  .skills {
+    .desc-item {
+      padding: 4px 0;
+      font-size: 14px;
+
+      &::before {
+        content: '▣';
+        margin-right: 14px;
+      }
+    }
+  }
+
+  .work-experiences,
+  .project-list,
+  .edu-info {
+    .header {
+      .title {
+        order: 1;
+        flex: 1;
+        font-weight: bold;
+      }
+
+      .date-range {
+        flex: 1;
+        order: 2;
+        text-align: center;
+      }
+
+      .sub-title {
+        flex: 1;
+        order: 3;
+        padding-right: 10px;
+        text-align: right;
+      }
+    }
+
+    .desc {
+      margin-top: 8px;
+    }
+
+    .common-module+.common-module {
+      margin-top: 10px;
+    }
+  }
+}

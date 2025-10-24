@@ -102,7 +102,7 @@ function LayoutSettings() {
     >
       <Button>
         <Space>
-          布局设置
+          布局
           <DownOutlined />
         </Space>
       </Button>

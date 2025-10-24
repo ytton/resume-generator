@@ -1,20 +1,36 @@
 import { createFromIconfontCN } from '@ant-design/icons'
 import { Button, Drawer, DrawerProps, Space, Steps } from 'antd'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ModuleItem, moduleListAtom } from '@/store/global'
 import { useAtom } from 'jotai'
 import { ModuleMap } from '../../constant'
+import { useIsCompactMode } from '@/hooks/useIsCompactMode'
 
 import { arrayMoveImmutable } from 'array-move'
 import classNames from 'classnames'
 import './index.less'
 import ModuleTitle from './moduleTitle'
+
 const IconFont = createFromIconfontCN({
   scriptUrl: './assets/icons/iconfont.js'
 })
-function EditDrawer(props: DrawerProps) {
-  const [current, setCurrent] = useState(0)
+
+interface EditDrawerProps extends DrawerProps {
+  initialStep?: number
+}
+
+function EditDrawer(props: EditDrawerProps) {
+  const { initialStep, ...drawerProps } = props
+  const [current, setCurrent] = useState(initialStep || 0)
   const [moduleList, setModuleList] = useAtom(moduleListAtom)
+  const isCompact = useIsCompactMode()
+
+  // 当initialStep改变时，更新current
+  useEffect(() => {
+    if (typeof initialStep === 'number') {
+      setCurrent(initialStep)
+    }
+  }, [initialStep])
 
   const onChange = (value: number) => {
     console.log('onChange:', value)
@@ -41,19 +57,20 @@ function EditDrawer(props: DrawerProps) {
   return (
     <Drawer
       title="编辑"
+      rootClassName="edit-drawer"
       mask={false}
-      width="40vw"
-      {...props}
+      {...drawerProps}
       onClose={(e) => {
-        setCurrent(0)
-        props.onClose?.(e)
+        setCurrent(initialStep || 0)
+        drawerProps.onClose?.(e)
       }}
     >
       <Steps
         direction="vertical"
         current={current}
         onChange={onChange}
-        className="steps"
+        className={classNames('steps', { 'compact-mode': isCompact })}
+        size={isCompact ? 'small' : 'default'}
         items={moduleList.map((module, ind) => ({
           title: (
             <ModuleTitle
@@ -77,14 +94,24 @@ function EditDrawer(props: DrawerProps) {
                 ind === current ? 'opacity-100' : 'h-0 transition-all opacity-0'
               ])}
             >
-              <div className="p-3 my-4 border border-gray-300 bordered min-h-32">
+              <div
+                className={classNames('p-3 my-4 border border-gray-300 bordered min-h-32', {
+                  'p-2 my-2 text-sm': isCompact
+                })}
+              >
                 {React.createElement(ModuleMap[module.name]!.Edit)}
               </div>
-              <Space>
+              <Space size={isCompact ? 'small' : 'middle'}>
                 {ind !== 0 && (
-                  <Button onClick={() => setCurrent((current) => current - 1)}>上一项</Button>
+                  <Button
+                    size={isCompact ? 'small' : undefined}
+                    onClick={() => setCurrent((current) => current - 1)}
+                  >
+                    上一项
+                  </Button>
                 )}
                 <Button
+                  size={isCompact ? 'small' : undefined}
                   onClick={(e) => {
                     const isFinished = ind === moduleList.length - 1
                     if (isFinished) {

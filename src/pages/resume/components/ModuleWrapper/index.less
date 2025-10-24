@@ -1,0 +1,84 @@
+.module {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: var(--module-span, 20px);
+
+  .module__content {
+    position: relative;
+  }
+
+  // hover状态的背景颜色变化
+  &.hovered {
+    &::after {
+      content: "";
+      top: 0;
+      left: 0;
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      box-shadow: 0 0 0 100vh rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  // 悬浮操作按钮 - 直接放在模块上
+  .module-actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+
+    .action-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        transition: all 0.2s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+        }
+
+        &.ai-btn {
+          color: #722ed1;
+
+          &:hover {
+            color: #9254de;
+            background: #f9f0ff;
+            border-color: #d3adf7;
+          }
+        }
+
+        &.edit-btn {
+          color: #1890ff;
+
+          &:hover {
+            color: #40a9ff;
+            background: #f0f9ff;
+            border-color: #91d5ff;
+          }
+        }
+
+        &.delete-btn {
+          color: #ff4d4f;
+
+          &:hover {
+            color: #ff7875;
+            background: #fff2f0;
+            border-color: #ffadd2;
+          }
+        }
+
+        .anticon {
+          font-size: 14px;
+        }
+      }
+    }
+  }

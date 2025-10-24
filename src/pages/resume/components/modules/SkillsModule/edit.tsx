@@ -10,9 +10,9 @@ export default function Edit() {
     setSkills(newValue)
   }
   return (
-    <div>
+    <div className="flex flex-col gap-3">
       {skills.map((skill, ind) => (
-        <div className="flex mb-3" key={'skill' + ind}>
+        <div className="flex items-center" key={'skill' + ind}>
           <Input
             className="mr-3"
             value={skill}

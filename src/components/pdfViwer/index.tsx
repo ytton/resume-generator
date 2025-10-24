@@ -110,7 +110,7 @@ const PdfViewer: React.FC<PdfViewerProps> = ({
       </div>
       <div className="pb-[10px] h-[calc(100%-30px)]">
         <div className="h-full overflow-auto">
-          <div className="pages h-full aspect-[0.70665] mx-auto" ref={pagesRef}>
+          <div className="pages h-full aspect-[0.70665] min-w-[763px] mx-auto" ref={pagesRef}>
             {pages.map((page, pInd) => (
               <div
                 className="relative h-full overflow-hidden bg-white page"

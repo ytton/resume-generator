@@ -1,18 +1,145 @@
-.steps.ant-steps
-  .ant-steps-item-finish
-  > .ant-steps-item-container
-  > .ant-steps-item-content
-  > .ant-steps-item-description {
+.steps.ant-steps .ant-steps-item-finish>.ant-steps-item-container>.ant-steps-item-content>.ant-steps-item-description {
   color: inherit;
 }
+
 .steps {
   .ant-steps-item .ant-steps-item-content .ant-steps-item-title {
     width: 100%;
     cursor: default;
   }
+
   .ant-steps-item .ant-steps-item-content .ant-steps-item-description {
     padding: 0;
     min-height: 0;
     margin: 0;
+  }
+}
+
+// 紧凑模式样式
+.steps.compact-mode {
+  .ant-steps-item {
+    .ant-steps-item-container {
+      .ant-steps-item-icon {
+        margin-right: 6px;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+      }
+
+      .ant-steps-item-content {
+        .ant-steps-item-title {
+          font-size: 13px;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+
+  // 让表单元素更紧凑
+  .ant-form {
+    .ant-form-item {
+      margin-bottom: 8px;
+
+      .ant-form-item-label {
+        font-size: 11px;
+        line-height: 1.3;
+        padding: 0;
+      }
+
+      .ant-input,
+      .ant-select-selector,
+      .ant-picker {
+        font-size: 11px;
+        padding: 2px 6px;
+        height: 24px;
+        line-height: 20px;
+      }
+
+      .ant-select-selector {
+        height: 24px !important;
+      }
+
+    }
+  }
+
+  .ant-select-single.ant-select-sm .ant-select-selector,
+  .ant-picker .ant-picker-input>input {
+    font-size: 11px !important;
+  }
+
+  // 让按钮和其他组件更紧凑
+  .ant-btn {
+    font-size: 11px;
+    height: 24px;
+    padding: 2px 6px;
+    line-height: 20px;
+  }
+
+  // Switch组件
+  .ant-switch {
+    font-size: 10px;
+  }
+
+  // 富文本编辑器样式
+  // .ql-toolbar {
+  //   border-color: #d9d9d9;
+  //   padding: 4px 6px;
+
+  //   .ql-picker,
+  //   .ql-formats .ql-button {
+  //     width: 24px;
+  //     height: 24px;
+  //     margin: 0 1px;
+
+  //     svg {
+  //       width: 14px;
+  //       height: 14px;
+  //     }
+  //   }
+  // }
+
+  // .ql-container {
+  //   border-color: #d9d9d9;
+  //   font-size: 11px;
+
+  //   .ql-editor {
+  //     padding: 8px;
+  //     min-height: 60px;
+  //     font-size: 11px;
+  //     line-height: 1.4;
+  //   }
+  // }
+
+  // Space.Compact 组件样式
+  .ant-space-compact {
+    .ant-input {
+      height: 24px;
+      font-size: 11px;
+      padding: 2px 6px;
+    }
+  }
+
+  // DatePicker 组件
+  .ant-picker-range {
+    .ant-picker-input {
+      input {
+        font-size: 11px;
+      }
+    }
+  }
+
+  // Checkbox
+  .ant-checkbox-wrapper {
+    font-size: 11px;
+
+    .ant-checkbox {
+      transform: scale(0.8);
+    }
+  }
+}
+
+.edit-drawer {
+  .ant-drawer-content-wrapper {
+    width: max(420px, 40vw)!important;
   }
 }

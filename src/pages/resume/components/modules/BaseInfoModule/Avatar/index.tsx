@@ -15,6 +15,7 @@ const getBase64 = (img: FileType, callback: (url: string) => void) => {
 
 export default function Avatar({ className }: { className?: string }) {
   const [avatar, setAvatar] = useAtom(avatarAtom)
+  
   const beforeUpload = (file: FileType) => {
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
     if (!isJpgOrPng) {
