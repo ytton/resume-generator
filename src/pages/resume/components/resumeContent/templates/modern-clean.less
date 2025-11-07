@@ -1,0 +1,270 @@
+/* 现代简洁风格简历模板 */
+.template-modern-clean {
+  .pages {
+    background-color: #f8f9fa;
+    line-height: var(--line-height, 1.6);
+    .page + .page {
+      margin-top: 24px;
+    }
+  }
+
+  .module {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    &__title {
+      line-height: 1.4;
+      padding: 16px 24px 12px;
+      border-bottom: none;
+      margin-bottom: 0;
+
+      span {
+        background: linear-gradient(135deg, var(--color-primary, #667eea) 0%, #764ba2 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        padding: 0;
+        min-width: auto;
+        display: inline-block;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 100%;
+          height: 3px;
+          background: linear-gradient(90deg, var(--color-primary, #667eea), transparent);
+          border-radius: 2px;
+        }
+      }
+    }
+
+    &__content {
+      padding: 20px 24px 24px;
+    }
+  }
+
+  // 基础信息模块
+  .base-info {
+    position: relative;
+    
+    .desc-item {
+      padding: 8px 0;
+      width: 50%;
+      order: 999;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .module__content {
+      display: flex;
+      flex-wrap: wrap;
+      padding-right: 120px;
+    }
+
+    .label {
+      display: inline-block;
+      width: 7em;
+      font-weight: 500;
+      color: #666;
+      
+      &::after {
+        content: ':';
+        margin-right: 12px;
+      }
+    }
+
+    &__name {
+      order: 1;
+      font-size: 32px !important;
+      font-weight: 700;
+      color: #1a1a1a;
+      width: 100% !important;
+      margin-bottom: 8px;
+    }
+
+    &__avatar {
+      position: absolute;
+      right: 0px;
+      top: 0;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    &__tel, &__email {
+      order: 2;
+      color: #444;
+    }
+
+    &__gender, &__work-years {
+      order: 5;
+    }
+
+    &__intention {
+      order: 3;
+      width: 100% !important;
+      font-size: 16px;
+      color: var(--color-primary, #667eea);
+      font-weight: 500;
+    }
+
+    &__city {
+      order: 6;
+    }
+  }
+
+  // 隐藏标签样式
+  .hide-label.hide-label {
+    .base-info {
+      min-height: 200px;
+      
+      .desc-item {
+        width: auto;
+        margin-right: 24px;
+        padding: 6px 16px;
+        background: rgba(var(--color-primary, 102, 126, 234), 0.08);
+        border-radius: 20px;
+        font-size: 14px;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      .label {
+        display: none;
+      }
+
+      &__name {
+        order: 1;
+        font-size: 36px !important;
+        margin-bottom: 16px;
+        
+        &.desc-item {
+          width: 100% !important;
+          background: none;
+          padding: 0;
+          margin-right: 0;
+        }
+      }
+
+      &__cur-status {
+        width: 100% !important;
+        order: 99999;
+        margin-top: 12px;
+        background: none !important;
+        padding: 0 !important;
+        font-style: italic;
+        color: #666;
+      }
+    }
+  }
+
+  // 技能模块
+  .skills {
+    .desc-item {
+      padding: 8px 0;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        background: var(--color-primary, #667eea);
+        border-radius: 50%;
+        margin-right: 16px;
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  // 工作经验、项目经验、教育信息
+  .work-experiences,
+  .project-list,
+  .edu-info {
+    .header {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #eee;
+
+      .title {
+        order: 1;
+        flex: 2;
+        font-weight: 600;
+        font-size: 16px;
+        color: #1a1a1a;
+      }
+
+      .date-range {
+        order: 3;
+        flex: 1;
+        text-align: right;
+        font-size: 14px;
+        color: var(--color-primary, #667eea);
+        font-weight: 500;
+      }
+
+      .sub-title {
+        order: 2;
+        flex: 1.5;
+        text-align: center;
+        padding: 0 20px;
+        font-size: 15px;
+        color: #666;
+      }
+    }
+
+    .desc {
+      margin-top: 12px;
+      line-height: 1.7;
+      color: #444;
+
+      ul {
+        padding-left: 20px;
+
+        li {
+          margin-bottom: 6px;
+          position: relative;
+
+          &::marker {
+            color: var(--color-primary, #667eea);
+          }
+        }
+      }
+    }
+
+    .common-module + .common-module {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #f0f0f0;
+    }
+  }
+
+  // 自我评价模块
+  .self-evaluation {
+    .module__content {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #444;
+      font-style: italic;
+    }
+  }
+}

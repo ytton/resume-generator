@@ -5,6 +5,7 @@ import {
 } from '@ant-design/icons'
 import { Button, Input, Popconfirm, Space, Switch, Tooltip } from 'antd'
 import { useState } from 'react'
+import { useIsCompactMode } from '@/hooks/useIsCompactMode'
 import './index.less'
 type Props = {
   onlyTitle?: boolean
@@ -30,6 +31,7 @@ function ModuleTitle({
   onOrderChange
 }: Props) {
   const [newTitle, setNewTitle] = useState(title)
+  const isCompact = useIsCompactMode()
   const titleEdit = (
     <Popconfirm
       title={
@@ -52,7 +54,7 @@ function ModuleTitle({
       <Tooltip title="更改名称">
         <Button
           type="text"
-          size="small"
+          size={isCompact ? 'small' : undefined}
           icon={<EditOutlined />}
           // onClick={() => setChangeTitleOpen(true)}
         />
@@ -61,27 +63,33 @@ function ModuleTitle({
   )
   if (onlyTitle)
     return (
-      <Space>
-        <div className="cursor-pointer moduleTitle__title">{title}</div> {titleEdit}
+      <Space size={isCompact ? 'small' : 'middle'}>
+        <div className={`cursor-pointer moduleTitle__title ${isCompact ? 'text-sm' : ''}`}>
+          {title}
+        </div>
+        {titleEdit}
       </Space>
     )
   return (
     <>
       <Space
         className="flex items-center w-full"
+        size={isCompact ? 'small' : 'middle'}
         onClick={(e) => {
           if ((e.target as HTMLElement).classList.contains('moduleTitle__title')) return
           e.stopPropagation()
         }}
       >
-        <div className="cursor-pointer moduleTitle__title">{title}</div>
+        <div className={`cursor-pointer moduleTitle__title ${isCompact ? 'text-sm' : ''}`}>
+          {title}
+        </div>
         <div>
           <Switch
             size="small"
             value={status}
             onChange={onStatusChange}
-            checkedChildren="开启"
-            unCheckedChildren="关闭"
+            checkedChildren={isCompact ? '' : '开启'}
+            unCheckedChildren={isCompact ? '' : '关闭'}
           />
         </div>
         {titleEdit}

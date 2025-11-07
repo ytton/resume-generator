@@ -163,6 +163,14 @@ export const projListAtom = atomWithStorage<ProjItem[]>('projListAtom', [
   }
 ])
 
+export type ThemeColors = {
+  mainColor: string
+}
+
+export const themeColorsAtom = atomWithStorage<ThemeColors>('themeColorsAtom', {
+  mainColor: '#6767aa'
+})
+
 export type LayoutSettings = {
   moduleSpan: number
   lineHeight: number

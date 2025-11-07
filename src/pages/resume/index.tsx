@@ -1,31 +1,65 @@
 import ImportJsonButton from '@/components/ImportJsonButton'
-import { allAtom, baseInfoAtom, layoutSettingsAtom } from '@/store/global'
+import {
+  allAtom,
+  baseInfoAtom,
+  layoutSettingsAtom,
+  themeColorsAtom,
+  moduleListAtom
+} from '@/store/global'
 import dom2img from '@/utils/dom2img'
 import dom2pdf from '@/utils/dom2pdf'
 import {
+  BgColorsOutlined,
   CaretDownOutlined,
   FileImageOutlined,
   FilePdfOutlined,
   FileTextOutlined,
   SwapOutlined
 } from '@ant-design/icons'
-import { Button, Dropdown, MenuProps, Space, Tooltip } from 'antd'
+import { Button, ColorPicker, Dropdown, MenuProps, Space, Tooltip } from 'antd'
 import classNames from 'classnames'
 import dayjs from 'dayjs'
 import { useAtom } from 'jotai'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import EditDrawer from './components/EditDrawer'
 import LayoutSettings from './components/LayoutSettings'
 import ResumeContent from './components/resumeContent'
+import TemplateDrawer from './components/TemplateDrawer'
 
 function Resume() {
   const [, dispatch] = useAtom(allAtom)
   const [layoutSettings] = useAtom(layoutSettingsAtom)
+  const [themeColors, setThemeColors] = useAtom(themeColorsAtom)
   const [baseInfo] = useAtom(baseInfoAtom)
   const { labelVisible } = baseInfo
   const { moduleSpan, lineHeight, pageMargin } = layoutSettings
 
   const [drawerVisible, setDrawerVisible] = useState(false)
+  const [templateDrawerVisible, setTemplateDrawerVisible] = useState(false)
+  const [moduleList] = useAtom(moduleListAtom)
+  const [editStepIndex, setEditStepIndex] = useState(0)
+
+  // 监听 ModuleWrapper 触发的编辑事件
+  useEffect(() => {
+    const handleEditModule = (event: CustomEvent) => {
+      const { moduleName } = event.detail
+
+      // 关闭模板选择抽屉，实现互斥
+      setTemplateDrawerVisible(false)
+
+      // 找到模块在列表中的索引，设置EditDrawer的step
+      const moduleIndex = moduleList.findIndex((module) => module.name === moduleName)
+      if (moduleIndex !== -1) {
+        setEditStepIndex(moduleIndex)
+        setDrawerVisible(true)
+      }
+    }
+
+    window.addEventListener('openEditDrawer', handleEditModule as EventListener)
+    return () => {
+      window.removeEventListener('openEditDrawer', handleEditModule as EventListener)
+    }
+  }, [moduleList])
 
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     if (e.key === 'pdf') {
@@ -86,15 +120,24 @@ function Resume() {
     items,
     onClick: handleMenuClick
   }
-
+  const handleEditDrawerOpen = () => {
+    setDrawerVisible(true)
+    setTemplateDrawerVisible(false)
+  }
+  const handleTemplateDrawerOpen = () => {
+    setDrawerVisible(false)
+    setTemplateDrawerVisible(true)
+  }
   return (
     <div
-      className={classNames('transition-all duration-300', { 'mr-[40vw]': drawerVisible })}
+      className="transition-all duration-300"
       style={{
         '--module-span': `${moduleSpan}px`,
         '--line-height': `${lineHeight}`,
         '--page-margin-x': `${pageMargin[0]}px`,
-        '--page-margin-y': `${pageMargin[1]}px`
+        '--page-margin-y': `${pageMargin[1]}px`,
+        '--color-primary': `${themeColors.mainColor}`,
+        marginRight: drawerVisible || templateDrawerVisible ? 'max(40vw, 420px)' : '0'
       }}
     >
       <header className="flex items-center bg-white h-[60px]">
@@ -108,11 +151,22 @@ function Resume() {
                 </div>
               </Button>
             </Dropdown>
-            <Tooltip title="开发中...">
+            <Tooltip title="主题色">
+              <ColorPicker
+                trigger="hover"
+                value={themeColors.mainColor}
+                onChange={(color) =>
+                  setThemeColors({ ...themeColors, mainColor: color.toHexString() })
+                }
+              >
+                <Button icon={<BgColorsOutlined />}>主题</Button>
+              </ColorPicker>
+            </Tooltip>
+            {/* <Tooltip title="开发中...">
               <Button className="flex items-center" disabled>
                 分享
               </Button>
-            </Tooltip>
+            </Tooltip> */}
           </Space>
           <Tooltip title="开发中...">
             <Button className="flex items-center" disabled>
@@ -120,12 +174,8 @@ function Resume() {
             </Button>
           </Tooltip>
           <Space className="justify-end flex-1">
-            <Tooltip title="开发中...">
-              <Button className="flex items-center" disabled>
-                选择模板
-              </Button>
-            </Tooltip>
-            <Button onClick={() => setDrawerVisible(true)}>编辑</Button>
+            <Button onClick={handleTemplateDrawerOpen}>模板</Button>
+            <Button onClick={handleEditDrawerOpen}>编辑</Button>
             <LayoutSettings />
           </Space>
         </div>
@@ -139,7 +189,12 @@ function Resume() {
         title="编辑"
         open={drawerVisible}
         onClose={() => setDrawerVisible(false)}
+        initialStep={editStepIndex}
       ></EditDrawer>
+      <TemplateDrawer
+        open={templateDrawerVisible}
+        onClose={() => setTemplateDrawerVisible(false)}
+      />
     </div>
   )
 }

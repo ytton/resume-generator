@@ -4,9 +4,11 @@ import { CommonModule } from '../CommonModule'
 import { Button, Divider } from 'antd'
 import dayjs from 'dayjs'
 import { DeleteFilled } from '@ant-design/icons'
+import { useIsCompactMode } from '@/hooks/useIsCompactMode'
 
 export default function Edit() {
   const [workExp, setWorkExp] = useAtom(workExpAtom)
+  const isCompact = useIsCompactMode()
   const handleOnChange = (
     val: string | [startDate: string, endDate: string | 'now'],
     name: string,
@@ -42,8 +44,9 @@ export default function Edit() {
               onChange={(v, n) => handleOnChange(v, n, ind)}
             />
             {ind >= 1 && (
-              <div className="h-[75px] flex items-center absolute top-0 right-3">
+              <div className={`flex items-center absolute top-0 right-3 ${isCompact ? 'h-[60px]' : 'h-[75px]'}`}>
                 <Button
+                  size={isCompact ? 'small' : undefined}
                   icon={<DeleteFilled />}
                   onClick={() => {
                     const newValue = [...workExp]
@@ -61,6 +64,7 @@ export default function Edit() {
       ))}
       <div className="py-3 text-center">
         <Button
+          size={isCompact ? 'small' : undefined}
           onClick={() =>
             setWorkExp([
               ...workExp,
@@ -74,7 +78,7 @@ export default function Edit() {
             ])
           }
         >
-          新增一个
+          {isCompact ? '新增' : '新增一个'}
         </Button>
       </div>
     </div>

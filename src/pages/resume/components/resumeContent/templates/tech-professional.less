@@ -1,0 +1,466 @@
+/* 技术对口风格简历模板 */
+.template-tech-professional {
+  .pages {
+    background-color: #0a0e1a;
+    color: #e2e8f0;
+    line-height: var(--line-height, 1.6);
+    font-family: 'Consolas', 'Monaco', 'Menlo', monospace;
+    
+    .page + .page {
+      margin-top: 20px;
+    }
+  }
+
+  .module {
+    background: #1a202c;
+    border: 1px solid #2d3748;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-primary, #00d4aa), #0099cc);
+    }
+
+    &:hover {
+      border-color: var(--color-primary, #00d4aa);
+      box-shadow: 0 4px 16px rgba(0, 212, 170, 0.2);
+      transform: translateY(-2px);
+      transition: all 0.3s ease;
+    }
+
+    &__title {
+      line-height: 1.4;
+      margin: 0;
+      padding: 0;
+      border: none;
+
+      span {
+        background: #2d3748;
+        color: var(--color-primary, #00d4aa);
+        padding: 12px 16px;
+        font-size: 14px;
+        font-weight: 600;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-family: 'Consolas', monospace;
+        position: relative;
+
+        &::before {
+          content: '// ';
+          color: #718096;
+          margin-right: 8px;
+        }
+
+        &::after {
+          content: ' {';
+          color: #718096;
+        }
+      }
+    }
+
+    &__content {
+      padding: 20px 16px;
+      position: relative;
+
+      &::after {
+        content: '}';
+        position: absolute;
+        bottom: 8px;
+        right: 16px;
+        color: #718096;
+        font-family: 'Consolas', monospace;
+      }
+    }
+  }
+
+  // 基础信息模块
+  .base-info {
+    position: relative;
+    
+    .desc-item {
+      padding: 4px 0;
+      width: 50%;
+      order: 999;
+      font-size: 13px;
+      line-height: 1.5;
+      font-family: 'Consolas', monospace;
+    }
+
+    .module__content {
+      display: flex;
+      flex-wrap: wrap;
+      padding-right: 110px;
+    }
+
+    .label {
+      display: inline-block;
+      width: 8em;
+      font-weight: 500;
+      color: #4fd1c7;
+      
+      &::after {
+        content: ': ';
+        margin-right: 8px;
+        color: #718096;
+      }
+
+      &::before {
+        content: '  ';
+      }
+    }
+
+    &__name {
+      order: 1;
+      font-size: 32px !important;
+      font-weight: 700;
+      color: var(--color-primary, #00d4aa);
+      width: 100% !important;
+      margin-bottom: 16px;
+      font-family: 'Consolas', monospace;
+      position: relative;
+
+      &::before {
+        content: 'const developer = "';
+        font-size: 14px;
+        color: #718096;
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      &::after {
+        content: '";';
+        font-size: 14px;
+        color: #718096;
+      }
+    }
+
+    &__avatar {
+      position: absolute;
+      right: 0px;
+      top: 0;
+      border: 2px solid var(--color-primary, #00d4aa);
+      border-radius: 4px;
+      filter: grayscale(100%) contrast(1.2);
+      transition: all 0.3s ease;
+
+      &:hover {
+        filter: grayscale(0%) contrast(1);
+        box-shadow: 0 0 20px rgba(0, 212, 170, 0.3);
+      }
+    }
+
+    &__tel, &__email {
+      order: 2;
+      color: #a0aec0;
+    }
+
+    &__gender, &__work-years {
+      order: 4;
+    }
+
+    &__intention {
+      order: 3;
+      width: 100% !important;
+      font-size: 14px;
+      font-weight: 500;
+      color: #fbb6ce;
+      margin: 12px 0;
+      padding: 8px 12px;
+      background: rgba(251, 182, 206, 0.1);
+      border-left: 3px solid #fbb6ce;
+      border-radius: 4px;
+      font-family: 'Consolas', monospace;
+
+      &::before {
+        content: '// Role: ';
+        color: #718096;
+      }
+    }
+
+    &__city {
+      order: 5;
+    }
+  }
+
+  // 隐藏标签样式
+  .hide-label.hide-label {
+    .base-info {
+      min-height: 180px;
+      
+      .desc-item {
+        width: auto;
+        margin-right: 20px;
+        padding: 4px 8px;
+        background: #2d3748;
+        border: 1px solid #4a5568;
+        border-radius: 4px;
+        font-size: 12px;
+        font-family: 'Consolas', monospace;
+        color: #e2e8f0;
+
+        &::before {
+          content: '"';
+          color: #f56565;
+        }
+
+        &::after {
+          content: '"';
+          color: #f56565;
+        }
+      }
+
+      .label {
+        display: none;
+      }
+
+      &__name {
+        order: 1;
+        font-size: 36px !important;
+        
+        &.desc-item {
+          width: 100% !important;
+          background: none;
+          border: none;
+          padding: 0;
+          margin-right: 0;
+          margin-bottom: 20px;
+
+          &::before,
+          &::after {
+            color: #718096 !important;
+          }
+        }
+      }
+
+      &__cur-status {
+        width: 100% !important;
+        order: 99999;
+        margin-top: 12px;
+        background: none !important;
+        border: none !important;
+        color: #718096 !important;
+        font-style: italic;
+
+        &::before,
+        &::after {
+          content: '';
+        }
+      }
+    }
+  }
+
+  // 技能模块
+  .skills {
+    .desc-item {
+      padding: 6px 0;
+      font-size: 13px;
+      font-family: 'Consolas', monospace;
+      position: relative;
+      padding-left: 20px;
+
+      &::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: var(--color-primary, #00d4aa);
+        font-weight: bold;
+      }
+
+      &::after {
+        content: ',';
+        color: #718096;
+      }
+
+      &:last-child::after {
+        display: none;
+      }
+    }
+  }
+
+  // 工作经验、项目经验、教育信息
+  .work-experiences,
+  .project-list,
+  .edu-info {
+    .header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: #2d3748;
+      border: 1px solid #4a5568;
+      border-radius: 6px;
+      font-family: 'Consolas', monospace;
+
+      .title {
+        order: 1;
+        flex: 2;
+        font-weight: 600;
+        font-size: 16px;
+        color: var(--color-primary, #00d4aa);
+
+        &::before {
+          content: 'company: "';
+          font-size: 12px;
+          color: #4fd1c7;
+        }
+
+        &::after {
+          content: '",';
+          font-size: 12px;
+          color: #718096;
+        }
+      }
+
+      .date-range {
+        order: 3;
+        flex: 1;
+        text-align: right;
+        font-size: 11px;
+        color: #fbb6ce;
+        background: rgba(251, 182, 206, 0.1);
+        padding: 4px 8px;
+        border-radius: 4px;
+        border: 1px solid rgba(251, 182, 206, 0.3);
+
+        &::before {
+          content: 'period: ';
+          color: #718096;
+        }
+      }
+
+      .sub-title {
+        order: 2;
+        flex: 1.5;
+        text-align: center;
+        padding: 0 16px;
+        font-size: 13px;
+        color: #4fd1c7;
+
+        &::before {
+          content: 'role: "';
+          font-size: 11px;
+          color: #718096;
+        }
+
+        &::after {
+          content: '"';
+          font-size: 11px;
+          color: #718096;
+        }
+      }
+    }
+
+    .desc {
+      margin-top: 16px;
+      line-height: 1.6;
+      color: #a0aec0;
+      font-size: 13px;
+
+      ul {
+        padding-left: 0;
+        list-style: none;
+
+        li {
+          margin-bottom: 6px;
+          padding-left: 20px;
+          position: relative;
+
+          &::before {
+            content: '- ';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary, #00d4aa);
+            font-family: 'Consolas', monospace;
+          }
+        }
+      }
+
+      code {
+        background: #2d3748;
+        color: #f7fafc;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 12px;
+        border: 1px solid #4a5568;
+      }
+    }
+
+    .common-module + .common-module {
+      margin-top: 24px;
+      position: relative;
+
+      &::before {
+        content: '// ---';
+        position: absolute;
+        top: -16px;
+        left: 0;
+        color: #718096;
+        font-size: 12px;
+        font-family: 'Consolas', monospace;
+      }
+    }
+  }
+
+  // 自我评价模块
+  .self-evaluation {
+    .module__content {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #a0aec0;
+      font-family: 'Consolas', monospace;
+      position: relative;
+
+      &::before {
+        content: '/*';
+        position: absolute;
+        top: -8px;
+        left: -4px;
+        color: #718096;
+        font-size: 14px;
+      }
+
+      &::after {
+        content: '*/';
+        position: absolute;
+        bottom: -8px;
+        right: -4px;
+        color: #718096;
+        font-size: 14px;
+      }
+    }
+  }
+
+  // 特殊代码块样式
+  .code-block {
+    background: #1a202c;
+    border: 1px solid #2d3748;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 8px 0;
+    font-family: 'Consolas', monospace;
+    font-size: 12px;
+    color: #e2e8f0;
+    
+    &::before {
+      content: '```';
+      color: #718096;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    &::after {
+      content: '```';
+      color: #718096;
+      display: block;
+      margin-top: 8px;
+    }
+  }
+}

@@ -1,0 +1,380 @@
+/* 创意设计风格简历模板 */
+.template-creative-design {
+  .pages {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    line-height: var(--line-height, 1.6);
+    padding: 20px;
+    
+    .page + .page {
+      margin-top: 20px;
+    }
+  }
+
+  .module {
+    position: relative;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    &:nth-child(odd) {
+      transform: rotate(-0.5deg);
+    }
+
+    &:nth-child(even) {
+      transform: rotate(0.3deg);
+    }
+
+    &:hover {
+      transform: rotate(0deg) scale(1.02);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 10;
+    }
+
+    &__title {
+      line-height: 1.2;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+
+      span {
+        background: linear-gradient(45deg, var(--color-primary, #ff6b6b), #4ecdc4);
+        color: #fff;
+        padding: 16px 20px;
+        font-size: 18px;
+        font-weight: 700;
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: relative;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          animation: shimmer 2s infinite;
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+          background-size: 300% 300%;
+          animation: gradient 3s ease infinite;
+        }
+      }
+    }
+
+    &__content {
+      padding: 24px 20px;
+    }
+  }
+
+  // 基础信息模块
+  .base-info {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 248, 255, 0.9));
+    
+    .desc-item {
+      padding: 8px 0;
+      width: 50%;
+      order: 999;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .module__content {
+      display: flex;
+      flex-wrap: wrap;
+      padding-right: 120px;
+    }
+
+    .label {
+      display: inline-block;
+      width: 7em;
+      font-weight: 600;
+      color: #555;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+      
+      &::after {
+        content: ':';
+        margin-right: 10px;
+        color: var(--color-primary, #ff6b6b);
+      }
+    }
+
+    &__name {
+      order: 1;
+      font-size: 36px !important;
+      font-weight: 800;
+      background: linear-gradient(45deg, var(--color-primary, #ff6b6b), #4ecdc4);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      width: 100% !important;
+      margin-bottom: 16px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    &__avatar {
+      position: absolute;
+      right: 0px;
+      top: 10px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      filter: grayscale(20%) contrast(1.1);
+      transition: all 0.3s ease;
+
+      &:hover {
+        filter: grayscale(0%) contrast(1.2);
+        transform: scale(1.05);
+      }
+    }
+
+    &__tel, &__email {
+      order: 2;
+      color: #444;
+    }
+
+    &__gender, &__work-years {
+      order: 4;
+    }
+
+    &__intention {
+      order: 3;
+      width: 100% !important;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-primary, #ff6b6b);
+      margin: 12px 0;
+      padding: 12px;
+      background: rgba(255, 107, 107, 0.1);
+      border-radius: 8px;
+      border-left: 4px solid var(--color-primary, #ff6b6b);
+    }
+
+    &__city {
+      order: 5;
+    }
+  }
+
+  // 隐藏标签样式
+  .hide-label.hide-label {
+    .base-info {
+      min-height: 200px;
+      
+      .desc-item {
+        width: auto;
+        margin-right: 16px;
+        margin-bottom: 8px;
+        padding: 8px 16px;
+        background: linear-gradient(45deg, var(--color-primary, #ff6b6b), #4ecdc4);
+        color: #fff;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+        &::after {
+          display: none;
+        }
+      }
+
+      .label {
+        display: none;
+      }
+
+      &__name {
+        order: 1;
+        font-size: 40px !important;
+        
+        &.desc-item {
+          width: 100% !important;
+          background: none;
+          color: transparent;
+          padding: 0;
+          margin-right: 0;
+          margin-bottom: 20px;
+        }
+      }
+
+      &__cur-status {
+        width: 100% !important;
+        order: 99999;
+        margin-top: 16px;
+        background: rgba(255, 255, 255, 0.8) !important;
+        color: #666 !important;
+        font-style: italic;
+      }
+    }
+  }
+
+  // 技能模块
+  .skills {
+    .desc-item {
+      padding: 10px 0;
+      font-size: 14px;
+      position: relative;
+      padding-left: 24px;
+
+      &::before {
+        content: '◆';
+        position: absolute;
+        left: 0;
+        color: var(--color-primary, #ff6b6b);
+        font-size: 16px;
+        animation: pulse 2s infinite;
+      }
+    }
+  }
+
+  // 工作经验、项目经验、教育信息
+  .work-experiences,
+  .project-list,
+  .edu-info {
+    .header {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      padding: 16px;
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
+      border-radius: 12px;
+      border: 2px solid rgba(255, 107, 107, 0.2);
+
+      .title {
+        order: 1;
+        flex: 2;
+        font-weight: 700;
+        font-size: 18px;
+        color: var(--color-primary, #ff6b6b);
+      }
+
+      .date-range {
+        order: 3;
+        flex: 1;
+        text-align: right;
+        font-size: 13px;
+        color: #fff;
+        background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+        padding: 6px 12px;
+        border-radius: 16px;
+        font-weight: 600;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .sub-title {
+        order: 2;
+        flex: 1.5;
+        text-align: center;
+        padding: 0 16px;
+        font-size: 14px;
+        color: #666;
+        font-weight: 500;
+      }
+    }
+
+    .desc {
+      margin-top: 16px;
+      line-height: 1.7;
+      color: #444;
+
+      ul {
+        padding-left: 0;
+        list-style: none;
+
+        li {
+          margin-bottom: 8px;
+          padding-left: 24px;
+          position: relative;
+
+          &::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary, #ff6b6b);
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    .common-module + .common-module {
+      margin-top: 24px;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--color-primary, #ff6b6b), transparent);
+      }
+    }
+  }
+
+  // 自我评价模块
+  .self-evaluation {
+    .module__content {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #444;
+      text-align: center;
+      font-style: italic;
+      position: relative;
+
+      &::before,
+      &::after {
+        content: '"';
+        font-size: 48px;
+        color: var(--color-primary, #ff6b6b);
+        opacity: 0.3;
+        font-family: serif;
+      }
+
+      &::before {
+        position: absolute;
+        top: -10px;
+        left: -10px;
+      }
+
+      &::after {
+        position: absolute;
+        bottom: -20px;
+        right: -10px;
+      }
+    }
+  }
+}
+
+// 动画定义
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}

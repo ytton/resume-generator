@@ -2,6 +2,7 @@ import { Form, Input } from 'antd'
 import classNames from 'classnames'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import { useIsCompactMode } from '@/hooks/useIsCompactMode'
 import DateRange from './dateRange'
 import './index.less'
 type Props = {
@@ -33,20 +34,26 @@ export default function Edit({
   desc,
   onChange
 }: Props) {
+  const isCompact = useIsCompactMode()
   const richText = (
     <ReactQuill
       modules={{
-        toolbar: [
-          [{ header: 1 }, { header: 2 }], // custom button values
-          ['bold', 'italic', 'underline'], // toggled buttons
-          [{ list: 'ordered' }, { list: 'bullet' }],
-          [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-          [{ align: [] }],
-          ['clean']
-        ]
+        toolbar: isCompact
+          ? [
+              ['bold', 'italic'],
+              [{ list: 'ordered' }, { list: 'bullet' }]
+            ]
+          : [
+              [{ header: 1 }, { header: 2 }], // custom button values
+              ['bold', 'italic', 'underline'], // toggled buttons
+              [{ list: 'ordered' }, { list: 'bullet' }],
+              [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+              [{ align: [] }],
+              ['clean']
+            ]
       }}
       className={classNames(
-        'flex flex-col rich-text min-h-28 mt-3',
+        `flex flex-col rich-text mt-3 ${isCompact ? 'min-h-20 text-xs' : 'min-h-28'}`,
         { [className ?? '']: onlyRichText },
         richTextClassName
       )}
@@ -63,17 +70,50 @@ export default function Edit({
     <div className={className}>
       <div>
         <Form className="pr-[30px]">
-          <div className="flex gap-6">
-            <Form.Item label={titleLabel} className="flex-1">
-              <Input value={title} onChange={(e) => onChange?.(e.target.value, 'title')} />
-            </Form.Item>
-            <Form.Item label={subTitleLabel} className="flex-1">
-              <Input value={subTitle} onChange={(e) => onChange?.(e.target.value, 'subTitle')} />
-            </Form.Item>
-          </div>
-          <Form.Item label={dateRangeLabel} className="flex-1 w-full">
-            <DateRange value={dateRange} onChange={(value) => onChange?.(value, 'dateRange')} />
-          </Form.Item>
+          {isCompact ? (
+            // 紧凑模式：单列布局
+            <div className="space-y-2">
+              <Form.Item label={titleLabel} className="mb-2">
+                <Input
+                  size="small"
+                  value={title}
+                  onChange={(e) => onChange?.(e.target.value, 'title')}
+                />
+              </Form.Item>
+              <Form.Item label={subTitleLabel} className="mb-2">
+                <Input
+                  size="small"
+                  value={subTitle}
+                  onChange={(e) => onChange?.(e.target.value, 'subTitle')}
+                />
+              </Form.Item>
+              <Form.Item label={dateRangeLabel} className="mb-2">
+                <DateRange
+                  size="small"
+                  value={dateRange}
+                  onChange={(value) => onChange?.(value, 'dateRange')}
+                />
+              </Form.Item>
+            </div>
+          ) : (
+            // 正常模式：多列布局
+            <>
+              <div className="flex gap-6">
+                <Form.Item label={titleLabel} className="flex-1">
+                  <Input value={title} onChange={(e) => onChange?.(e.target.value, 'title')} />
+                </Form.Item>
+                <Form.Item label={subTitleLabel} className="flex-1">
+                  <Input
+                    value={subTitle}
+                    onChange={(e) => onChange?.(e.target.value, 'subTitle')}
+                  />
+                </Form.Item>
+              </div>
+              <Form.Item label={dateRangeLabel} className="flex-1 w-full">
+                <DateRange value={dateRange} onChange={(value) => onChange?.(value, 'dateRange')} />
+              </Form.Item>
+            </>
+          )}
         </Form>
       </div>
       {richText}
