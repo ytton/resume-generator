@@ -226,7 +226,6 @@ export const getTemplateBaseCSS = (templateType: TemplateType): string => {
     }
   }
   .module {
-    margin-bottom: 32px;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -464,7 +463,6 @@ export const getTemplateBaseCSS = (templateType: TemplateType): string => {
     }
   }
   .module {
-    margin-bottom: 28px;
     border-bottom: 2px solid #e8e8e8;
     &:last-child {
       border-bottom: none;
@@ -716,7 +714,6 @@ export const getTemplateBaseCSS = (templateType: TemplateType): string => {
   }
   .module {
     position: relative;
-    margin-bottom: 32px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 16px;
@@ -1052,7 +1049,6 @@ export const getTemplateBaseCSS = (templateType: TemplateType): string => {
     }
   }
   .module {
-    margin-bottom: 32px;
     background: #1a202c;
     border: 1px solid #2d3748;
     border-radius: 8px;
