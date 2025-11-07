@@ -43,8 +43,12 @@ export default function Edit() {
               desc={exp.content}
               onChange={(v, n) => handleOnChange(v, n, ind)}
             />
-            {ind >= 1 && (
-              <div className={`flex items-center absolute top-0 right-3 ${isCompact ? 'h-[60px]' : 'h-[75px]'}`}>
+            {workExp.length > 1 && (
+              <div
+                className={`flex items-center absolute top-0 right-3 ${
+                  isCompact ? 'h-[60px]' : 'h-[75px]'
+                }`}
+              >
                 <Button
                   size={isCompact ? 'small' : undefined}
                   icon={<DeleteFilled />}
@@ -67,14 +71,14 @@ export default function Edit() {
           size={isCompact ? 'small' : undefined}
           onClick={() =>
             setWorkExp([
-              ...workExp,
               {
                 company: 'XXX公司',
                 position: 'web前端开发',
                 dateRange: [dayjs().format('YYYY-MM'), dayjs().format('YYYY-MM')],
                 content:
                   '<ul><li>主要负责描述，例如：带领X人团队进行市场营销和产品策划。</li><li>1-3行主要负责描述，不要太多。</li></ul>'
-              }
+              },
+              ...workExp
             ])
           }
         >

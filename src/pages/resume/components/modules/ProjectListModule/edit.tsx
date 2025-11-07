@@ -40,7 +40,7 @@ export default function Edit() {
               desc={item.content}
               onChange={(v, n) => handleOnChange(v, n, ind)}
             />
-            {ind >= 1 && (
+            {eduInfo.length > 1 && (
               <div className="h-[75px] flex items-center absolute top-0 right-3">
                 <Button
                   icon={<DeleteFilled />}
@@ -62,13 +62,13 @@ export default function Edit() {
         <Button
           onClick={() =>
             setEduInfo([
-              ...eduInfo,
               {
                 projName: '项目名称',
                 role: 'web前端开发',
                 dateRange: [dayjs().format('YYYY-MM'), dayjs().format('YYYY-MM')],
                 content: ''
-              }
+              },
+              ...eduInfo
             ])
           }
         >
